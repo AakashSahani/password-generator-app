@@ -3,12 +3,15 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="author" content="Aakash Sahani" />
+		<meta name="description" content="A Frontend Mentor Challenge" />
 		<link
 			rel="icon"
 			type="image/png"
 			sizes="32x32"
 			href="./assets/images/favicon-32x32.png"
 		/>
+		<link rel="stylesheet" href="./styles/main.css" />
 		<title>Frontend Mentor | Password generator app</title>
 	</head>
 	<body>
@@ -22,34 +25,51 @@
 					id="password"
 					value=""
 					aria-readonly="true"
+					readonly="true"
 				/>
-				<label for="length">Password Length</label>
-				<input
-					type="number"
-					name="length"
-					id="length"
-					aria-valuemin="8"
-					min="8"
-					max="20"
-					aria-valuemax="20"
-					value="8"
-				/>
-				<label for="uppercase">Include Uppercase Letters</label>
-				<input type="checkbox" name="uppercase" id="uppercase" checked />
-				<label for="lowercase">Include Lowercase Letters</label>
-				<input type="checkbox" name="lowercase" id="lowercase" checked />
-				<label for="numbers">Include Numbers</label>
-				<input type="checkbox" name="numbers" id="numbers" checked />
-				<label for="symbols">Include Symbols</label>
-				<input type="checkbox" name="symbols" id="symbols" />
-				<button type="submit" id="submit" role="button" aria-pressed="false">
-					GENERATE
-				</button>
+				<ul>
+					<li>
+						<label for="length"
+							>Password Length <span id="lengthValue">10</span></label
+						>
+						<input
+							type="range"
+							name="length"
+							id="length"
+							min="0"
+							max="20"
+							aria-valuemin="0"
+							aria-valuemax="20"
+							value="10"
+						/>
+					</li>
+					<li>
+						<input type="checkbox" name="uppercase" id="uppercase" checked />
+						<label for="uppercase">Include Uppercase Letters</label>
+					</li>
+					<li>
+						<input type="checkbox" name="lowercase" id="lowercase" checked />
+						<label for="lowercase">Include Lowercase Letters</label>
+					</li>
+					<li>
+						<input type="checkbox" name="numbers" id="numbers" checked />
+						<label for="numbers">Include Numbers</label>
+					</li>
+					<li>
+						<input type="checkbox" name="symbols" id="symbols" />
+						<label for="symbols">Include Symbols</label>
+					</li>
+					<li>
+						<div class="strength">
+							Strength
+							<span> Medium </span>
+						</div>
+					</li>
+					<li>
+						<button type="submit" id="submit">GENERATE</button>
+					</li>
+				</ul>
 			</form>
-			<div class="strength">
-				Strength
-				<span> Medium </span>
-			</div>
 		</main>
 		<script src="./script/app.js"></script>
 	</body>
