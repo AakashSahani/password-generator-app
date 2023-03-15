@@ -15,8 +15,25 @@
 		<main>
 			<h1>Password Generator</h1>
 			<form>
+				<label for="password">Generated Password</label>
+				<input
+					type="text"
+					name="password"
+					id="password"
+					value=""
+					aria-readonly="true"
+				/>
 				<label for="length">Password Length</label>
-				<input type="number" name="length" id="length" min="8" max="20" />
+				<input
+					type="number"
+					name="length"
+					id="length"
+					aria-valuemin="8"
+					min="8"
+					max="20"
+					aria-valuemax="20"
+					value="8"
+				/>
 				<label for="uppercase">Include Uppercase Letters</label>
 				<input type="checkbox" name="uppercase" id="uppercase" checked />
 				<label for="lowercase">Include Lowercase Letters</label>
@@ -25,7 +42,9 @@
 				<input type="checkbox" name="numbers" id="numbers" checked />
 				<label for="symbols">Include Symbols</label>
 				<input type="checkbox" name="symbols" id="symbols" />
-				<button type="submit" id="submit">GENERATE</button>
+				<button type="submit" id="submit" role="button" aria-pressed="false">
+					GENERATE
+				</button>
 			</form>
 			<div class="strength">
 				Strength

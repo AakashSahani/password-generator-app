@@ -3,6 +3,7 @@ const uppercaseToggle = document.getElementById('uppercase');
 const lowercaseToggle = document.getElementById('lowercase');
 const numbersToggle = document.getElementById('numbers');
 const symbolsToggle = document.getElementById('symbols');
+const passwordGen = document.getElementById('password');
 
 let uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 let lowercase = 'abcdefghijklmnopqrstuvwxyz';
@@ -43,15 +44,17 @@ symbolsToggle.addEventListener('change', () => {
 
 function generatePassword() {
 	let password = '';
-	for (let i = 0; i < 10; i++) {
+	for (let i = 0; i < passwordLength.value; i++) {
 		password += (lowercase + uppercase + numbers + symbols)[
 			Math.floor(
 				Math.random() * (symbols + numbers + lowercase + uppercase).length
 			)
 		];
 	}
-	console.log(password);
+	passwordGen.value = password;
 }
+
+generatePassword();
 
 const btn = document.getElementById('submit');
 btn.addEventListener('click', (e) => {
