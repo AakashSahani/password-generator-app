@@ -1,3 +1,15 @@
+:root {
+	/* Variables */
+	--almostWhite: #e6e5ea;
+	--veryDarkGray: #18171f;
+	--gray: #817d92;
+	--darkGray: #24232c;
+	--neonGreen: #a4ffaf;
+	--red: #f64a4a;
+	--orange: #fb7c58;
+	--yellow: #f8cd65;
+}
+
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -63,14 +75,136 @@ h6 {
 	isolation: isolate;
 }
 
-main {
-	height: 100vh;
+/* Page Style */
+
+body {
+	background-color: var(--veryDarkGray);
+	color: var(--almostWhite);
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
 }
 
-main,
-form {
+.hidden {
+	display: none;
+}
+
+h1 {
+	font-size: 1.2rem;
+	text-align: center;
+	color: var(--gray);
+}
+
+main {
+	max-width: 33%;
+	min-width: 350px;
+	width: 50vw;
+}
+
+.container {
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem;
+	background-color: var(--darkGray);
+	margin: 1rem auto;
+}
+
+.container input {
+	color: var(--almostWhite);
+	background-color: transparent;
+	border: none;
+	width: 100%;
+	font-size: 1.2rem;
+	font-weight: bold;
+}
+
+.container button {
+	background-color: transparent;
+	border: none;
+	color: transparent;
+	width: fit-content;
+}
+
+form ul {
+	background-color: var(--darkGray);
+	color: var(--almostWhite);
+	list-style: none;
+	padding: 1rem;
 	display: flex;
 	flex-flow: column;
+	gap: 1rem;
+}
+
+.slider {
+	display: flex;
+	flex-flow: column;
+}
+
+.slider label {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.slider label {
+	color: var(--almostWhite);
+}
+
+.slider label span {
+	color: var(--neonGreen);
+	font-size: 1.4rem;
+	font-weight: bold;
+}
+
+.slider input[type='range'] {
+	color: #f64a4a;
+}
+
+ul li {
+	display: flex;
+	gap: 0 1rem;
+	color: var(--almostWhite);
+}
+
+.container-strength {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 0.75rem;
+	background-color: var(--veryDarkGray);
+}
+
+.container-strength span:first-child {
+	color: var(--gray);
+}
+.container-strength span:last-child {
+	color: var(--almostWhite);
+	font-size: 1.2rem;
+}
+
+#submit {
+	background-color: var(--neonGreen);
+	color: var(--veryDarkGray);
+	width: 100%;
+	border: none;
+	padding: 0.75rem;
+	display: flex;
+	flex-flow: row;
 	justify-content: center;
 	align-items: center;
+	gap: 0 0.5rem;
+}
+
+@media (max-width: 600px) {
+	body {
+		align-items: flex-start;
+		padding: 20% 0;
+	}
+	main {
+		width: 90%;
+		min-width: 325px;
+	}
 }

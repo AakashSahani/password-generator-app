@@ -100,6 +100,5 @@ function generatePassword() {
 		: mediumPassword.test(password)
 		? (pwStrength = 'medium')
 		: (pwStrength = 'low');
-
-	console.log(pwStrength);
+	strength.innerHTML = pwStrength;
 }
