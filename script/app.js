@@ -6,6 +6,7 @@ const numbersToggle = document.getElementById('numbers');
 const symbolsToggle = document.getElementById('symbols');
 const lowercaseToggle = document.getElementById('lowercase');
 const uppercaseToggle = document.getElementById('uppercase');
+const strength = document.getElementById('strength');
 
 // Password generator variables
 let symbols = '';
@@ -68,6 +69,14 @@ btn.addEventListener('click', (e) => {
 	generatePassword();
 });
 
+// Password Strength Regex
+let strongPassword = new RegExp(
+	'(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})'
+);
+let mediumPassword = new RegExp(
+	'((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))'
+);
+
 // Functions
 // Password Generator functions
 // password is randomly selected from selected arrays and updated
@@ -85,4 +94,12 @@ function generatePassword() {
 	passwordGen.value = password.includes('undefined')
 		? 'Please select a checkbox'
 		: password;
+	// let pwStrength = strongPassword.test(password);
+	strongPassword.test(password)
+		? (pwStrength = 'high')
+		: mediumPassword.test(password)
+		? (pwStrength = 'medium')
+		: (pwStrength = 'low');
+
+	console.log(pwStrength);
 }
