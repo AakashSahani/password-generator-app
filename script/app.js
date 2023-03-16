@@ -125,3 +125,5 @@ function generatePassword() {
 	console.log(mediumPassword.test(password));
 	copied.classList.add('copied');
 }
+
+// Test
