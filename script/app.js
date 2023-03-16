@@ -1,4 +1,5 @@
 // DOM Element Variables
+const copyBtn = document.getElementById('copybtn');
 const btn = document.getElementById('submit');
 const passwordGen = document.getElementById('password');
 const passwordLength = document.getElementById('length');
@@ -7,6 +8,7 @@ const symbolsToggle = document.getElementById('symbols');
 const lowercaseToggle = document.getElementById('lowercase');
 const uppercaseToggle = document.getElementById('uppercase');
 const strength = document.getElementById('strength');
+const copied = document.getElementById('copied');
 
 // Password generator variables
 let symbols = '';
@@ -18,7 +20,25 @@ let uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 // Call on window load to populate initial value
 window.addEventListener('load', () => {
-	generatePassword();
+	uppercaseToggle.checked = true;
+	lowercaseToggle.checked = true;
+	numbersToggle.checked = true;
+	symbolsToggle.checked = false;
+	passwordLength.value = 10;
+});
+
+const copyToClipboard = async (text) => {
+	try {
+		await navigator.clipboard.writeText(text.value);
+		copied.classList.remove('copied');
+	} catch (error) {
+		alert('Failed to Copy');
+	}
+};
+
+// Copy to Clipboard
+copyBtn.addEventListener('click', () => {
+	copyToClipboard(passwordGen);
 });
 
 // Displays selected password length and generates password
@@ -71,11 +91,12 @@ btn.addEventListener('click', (e) => {
 
 // Password Strength Regex
 let strongPassword = new RegExp(
-	'(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})'
+	'^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{12,}$'
 );
 let mediumPassword = new RegExp(
-	'((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))'
+	'^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[A-Za-zd@$!%*?&]{8,}$'
 );
+let weakPassword = new RegExp('^(?=.*[a-zA-Z])w{1,7}$	');
 
 // Functions
 // Password Generator functions
@@ -91,14 +112,16 @@ function generatePassword() {
 		];
 	}
 	// Checking if at least one checkbox is selected
-	passwordGen.value = password.includes('undefined')
-		? 'Please select a checkbox'
-		: password;
-	// let pwStrength = strongPassword.test(password);
+	passwordGen.value = password.includes('undefined') ? '' : password;
+	let pwStrength = '';
 	strongPassword.test(password)
-		? (pwStrength = 'high')
+		? (pwStrength = 'STRONG')
 		: mediumPassword.test(password)
-		? (pwStrength = 'medium')
-		: (pwStrength = 'low');
+		? (pwStrength = 'MEDIUM')
+		: weakPassword.test(password)
+		? (pwStrength = 'WEAK')
+		: (pwStrength = 'TOO WEAK!');
 	strength.innerHTML = pwStrength;
+	console.log(mediumPassword.test(password));
+	copied.classList.add('copied');
 }

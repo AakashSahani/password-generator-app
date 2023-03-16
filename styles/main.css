@@ -1,3 +1,23 @@
+@font-face {
+	font-family: 'Jet Brains Mono';
+	src: url('../assets/fonts/JetBrainsMono-VariableFont_wght.ttf');
+}
+@font-face {
+	font-family: 'Jet Brains Mono';
+	src: url('../assets/fonts/JetBrainsMono-Italic-VariableFont_wght.ttf');
+	font-style: italic;
+}
+@font-face {
+	font-family: 'Jet Brains Mono';
+	src: url('../assets/fonts/static/JetBrainsMono-Bold.ttf');
+	font-weight: bold;
+}
+@font-face {
+	font-family: 'Jet Brains Mono';
+	src: url('../assets/fonts/static/JetBrainsMono-BoldItalic.ttf');
+	font-weight: bold;
+	font-style: italic;
+}
 :root {
 	/* Variables */
 	--almostWhite: #e6e5ea;
@@ -34,6 +54,7 @@ body {
 	line-height: 1.5;
 	-webkit-font-smoothing: antialiased;
 	height: 100%;
+	font-family: 'Jet Brains Mono', sans-serif;
 }
 /*
   6. Improve media defaults
@@ -116,6 +137,7 @@ main {
 	background-color: transparent;
 	border: none;
 	width: 100%;
+	flex: 1;
 	font-size: 1.2rem;
 	font-weight: bold;
 }
@@ -123,8 +145,21 @@ main {
 .container button {
 	background-color: transparent;
 	border: none;
-	color: transparent;
+	color: var(--neonGreen);
 	width: fit-content;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.copied {
+	visibility: hidden;
+}
+
+.container button:hover,
+.container button:hover svg path {
+	cursor: pointer;
+	fill: white;
 }
 
 form ul {
@@ -133,6 +168,9 @@ form ul {
 	list-style: none;
 	padding: 1rem;
 	display: flex;
+	min-height: fit-content;
+	/* height: 60vh; */
+	justify-content: space-evenly;
 	flex-flow: column;
 	gap: 1rem;
 }
@@ -156,10 +194,6 @@ form ul {
 	color: var(--neonGreen);
 	font-size: 1.4rem;
 	font-weight: bold;
-}
-
-.slider input[type='range'] {
-	color: #f64a4a;
 }
 
 ul li {
@@ -187,15 +221,28 @@ ul li {
 
 #submit {
 	background-color: var(--neonGreen);
+	border: 2px solid var(--darkGray);
 	color: var(--veryDarkGray);
 	width: 100%;
 	border: none;
 	padding: 0.75rem;
+	height: 3rem;
+	margin: 0.25rem auto;
 	display: flex;
 	flex-flow: row;
 	justify-content: center;
 	align-items: center;
 	gap: 0 0.5rem;
+}
+
+#submit:hover {
+	border: 2px solid var(--neonGreen);
+	color: var(--neonGreen);
+	background-color: var(--darkGray);
+}
+
+#submit:hover svg path {
+	fill: var(--neonGreen);
 }
 
 @media (max-width: 600px) {
@@ -207,4 +254,9 @@ ul li {
 		width: 90%;
 		min-width: 325px;
 	}
+}
+
+input[type='checkbox'],
+input[type='range'] {
+	accent-color: var(--neonGreen);
 }

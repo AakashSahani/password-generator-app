@@ -19,16 +19,21 @@
 			<h1>Password Generator</h1>
 			<form>
 				<div class="container">
-					<!-- <label for="password" class="hidden">Generated Password</label> -->
 					<input
 						type="text"
 						name="password"
 						id="password"
 						value=""
+						placeholder="P4$5W0rD!"
 						readonly="true"
 						aria-label="Generated Password"
 					/>
-					<button>
+					<button
+						type="button"
+						aria-roledescription="button to copy generated password to clipboard"
+						id="copybtn"
+					>
+						<span class="copied" id="copied"> COPIED </span>
 						<svg
 							width="21"
 							height="24"
