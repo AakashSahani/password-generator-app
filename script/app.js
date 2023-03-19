@@ -91,7 +91,7 @@ btn.addEventListener('click', (e) => {
 });
 
 // Password Strength Regex
-const strongRegEx = new RegExp('.{10,}', '');
+const strongRegEx = new RegExp('.{12,}', '');
 const mediumRegEx = new RegExp('.{8,}', '');
 const weakRegEx = new RegExp('.{6,}', '');
 
@@ -111,13 +111,19 @@ function generatePassword() {
 	// Checking if at least one checkbox is selected
 	passwordGen.value = password.includes('undefined') ? '' : password;
 	let pwStrength = '';
-	strongRegEx.test(password)
-		? (pwStrength = 'STRONG' && barStrengthClass('strong'))
-		: mediumRegEx.test(password)
-		? (pwStrength = 'MEDIUM' && barStrengthClass('medium'))
-		: weakRegEx.test(password)
-		? (pwStrength = 'WEAK' && barStrengthClass('weak'))
-		: (pwStrength = 'VERY WEAK' && barStrengthClass('too_weak'));
+	if (strongRegEx.test(password)) {
+		pwStrength = 'STRONG';
+		barStrengthClass('strong');
+	} else if (mediumRegEx.test(password)) {
+		pwStrength = 'MEDIUM';
+		barStrengthClass('medium');
+	} else if (weakRegEx.test(password)) {
+		pwStrength = 'WEAK';
+		barStrengthClass('weak');
+	} else {
+		pwStrength = 'VERY WEAK';
+		barStrengthClass('too_weak');
+	}
 	console.log(pwStrength);
 	strength.innerHTML = pwStrength;
 	copied.classList.add('copied');
