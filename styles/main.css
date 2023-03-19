@@ -122,6 +122,7 @@ main {
 	max-width: 33%;
 	min-width: 350px;
 	width: 50vw;
+	background-color: var(--veryDarkGray);
 }
 
 .container {
