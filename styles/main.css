@@ -122,7 +122,10 @@ main {
 	max-width: 33%;
 	min-width: 350px;
 	width: 50vw;
+	height: 60vh;
 	background-color: var(--veryDarkGray);
+	display: flex;
+	flex-flow: column;
 }
 
 .container {
@@ -200,6 +203,8 @@ ul li {
 	display: flex;
 	gap: 0 1rem;
 	color: var(--almostWhite);
+	height: 100%;
+	flex: 1;
 }
 
 .container-strength {
