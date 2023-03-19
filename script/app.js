@@ -9,6 +9,7 @@ const lowercaseToggle = document.getElementById('lowercase');
 const uppercaseToggle = document.getElementById('uppercase');
 const strength = document.getElementById('strength');
 const copied = document.getElementById('copied');
+const barStrength = document.querySelector('.bar_strength_container');
 
 // Password generator variables
 let symbols = '';
@@ -90,6 +91,9 @@ btn.addEventListener('click', (e) => {
 });
 
 // Password Strength Regex
+const strongRegEx = new RegExp('.{10,}', '');
+const mediumRegEx = new RegExp('.{8,}', '');
+const weakRegEx = new RegExp('.{6,}', '');
 
 // Functions
 // Password Generator functions
@@ -107,9 +111,23 @@ function generatePassword() {
 	// Checking if at least one checkbox is selected
 	passwordGen.value = password.includes('undefined') ? '' : password;
 	let pwStrength = '';
-
+	strongRegEx.test(password)
+		? (pwStrength = 'STRONG' && barStrengthClass('strong'))
+		: mediumRegEx.test(password)
+		? (pwStrength = 'MEDIUM' && barStrengthClass('medium'))
+		: weakRegEx.test(password)
+		? (pwStrength = 'WEAK' && barStrengthClass('weak'))
+		: (pwStrength = 'VERY WEAK' && barStrengthClass('too_weak'));
+	console.log(pwStrength);
 	strength.innerHTML = pwStrength;
 	copied.classList.add('copied');
 }
 
-// Test
+function barStrengthClass(styleClass) {
+	const classesArray = ['strong', 'medium', 'weak', 'too_weak'];
+	classesArray.map((styles) =>
+		styles === styleClass
+			? barStrength.classList.add(styles)
+			: barStrength.classList.remove(styles)
+	);
+}
