@@ -90,13 +90,6 @@ btn.addEventListener('click', (e) => {
 });
 
 // Password Strength Regex
-let strongPassword = new RegExp(
-	'^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{12,}$'
-);
-let mediumPassword = new RegExp(
-	'^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[A-Za-zd@$!%*?&]{8,}$'
-);
-let weakPassword = new RegExp('^(?=.*[a-zA-Z])w{1,7}$	');
 
 // Functions
 // Password Generator functions
@@ -114,15 +107,8 @@ function generatePassword() {
 	// Checking if at least one checkbox is selected
 	passwordGen.value = password.includes('undefined') ? '' : password;
 	let pwStrength = '';
-	strongPassword.test(password)
-		? (pwStrength = 'STRONG')
-		: mediumPassword.test(password)
-		? (pwStrength = 'MEDIUM')
-		: weakPassword.test(password)
-		? (pwStrength = 'WEAK')
-		: (pwStrength = 'TOO WEAK!');
+
 	strength.innerHTML = pwStrength;
-	console.log(mediumPassword.test(password));
 	copied.classList.add('copied');
 }
 
